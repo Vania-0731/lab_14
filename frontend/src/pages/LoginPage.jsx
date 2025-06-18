@@ -1,25 +1,23 @@
+// src/pages/LoginPage.jsx
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore"; 
 
 function LoginPage() {
   const navigate = useNavigate();
-  const login = useAuthStore((state) => state.login); 
+  const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const email = e.target.email.value;
+    const username = e.target.username.value;
     const password = e.target.password.value;
 
-    // Simulación de login 
-    const usuarioFake = {
-      nombre: "Usuario Chanchirata",
-      email,
-      token: "123abc456def"
-    };
-
-    login(usuarioFake); 
-    navigate("/series");
+    try {
+      await login({ username, password });
+      navigate("/series");
+    } catch (error) {
+      alert('Error en el login');
+    }
   };
 
   return (
@@ -32,13 +30,12 @@ function LoginPage() {
                 <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
                 <form onSubmit={handleSubmit} autoComplete="off">
                   <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="email">E-Mail</label>
-                    <input id="email" type="email" className="form-control" name="email" required autoFocus />
+                    <label className="mb-2 text-muted" htmlFor="username">Usuario</label>
+                    <input id="username" type="text" className="form-control" name="username" required autoFocus />
                   </div>
                   <div className="mb-3">
                     <div className="mb-2 w-100">
                       <label className="text-muted" htmlFor="password">Contraseña</label>
-                      <a href="forgot.html" className="float-end">Recuperar Contraseña?</a>
                     </div>
                     <input id="password" type="password" className="form-control" name="password" required />
                   </div>

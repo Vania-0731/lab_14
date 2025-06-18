@@ -33,7 +33,7 @@ function HeaderComponent() {
                     </ul>
                     <div>
                         <p className="text-white bg-dark p-1">
-                            Bienvenido {usuario?.nombre || "Invitado"}
+                            Bienvenido {usuario?.username || "Invitado"}
                         </p>
                         <button onClick={handleLogout} className="btn btn-dark p-1">
                             Salir
