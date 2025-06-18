@@ -1,4 +1,4 @@
-# Lab 13 – Series Management System
+# Lab 14 – Series Management System
 
 This project is a full-stack application designed to manage TV series using **Django REST Framework** for the backend and **React** for the frontend. It allows users to browse, add, edit, delete, and favorite series, along with managing their associated categories.
 
@@ -18,8 +18,8 @@ lab_13/
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/Vania-0731/lab_13.git
-    cd lab_13
+    git clone https://github.com/Vania-0731/lab_14.git
+    cd lab_14
     ```
 
 2. **Navigate to the backend folder**
