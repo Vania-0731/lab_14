@@ -1,22 +1,36 @@
-// src/pages/LoginPage.jsx
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/useAuthStore"; 
+import { useState} from "react";
+import { useAuthStore } from "../store/useAuthStore";
+import { loginService } from "../services/LoginServices";
+
+const initData = {
+  username: "",
+  password: "",
+};
 
 function LoginPage() {
   const navigate = useNavigate();
-  const login = useAuthStore((state) => state.login);
+  const { login } = useAuthStore();
+  const [data, setData] = useState(initData);
+
+  const onChangeUsername = (e) => {
+    const nData = { ...data, username: e.target.value };
+    setData(nData);
+  };
+  const onChangePassword = (e) => {
+    const nData = { ...data, password: e.target.value };
+    setData(nData);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const username = e.target.username.value;
-    const password = e.target.password.value;
-
     try {
-      await login({ username, password });
+      const resp = await loginService(data);
+      console.log(resp.data);
+      login(resp.data);
       navigate("/series");
     } catch (error) {
-      alert('Error en el login');
+      window.alert("El usuario o contraseña no es correcto");
     }
   };
 
@@ -30,21 +44,52 @@ function LoginPage() {
                 <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
                 <form onSubmit={handleSubmit} autoComplete="off">
                   <div className="mb-3">
-                    <label className="mb-2 text-muted" htmlFor="username">Usuario</label>
-                    <input id="username" type="text" className="form-control" name="username" required autoFocus />
+                    <label className="mb-2 text-muted" htmlFor="username">
+                      Usuario
+                    </label>
+                    <input
+                      id="username"
+                      type="text"
+                      className="form-control"
+                      name="username"
+                      required
+                      autoFocus
+                      onChange={onChangeUsername}
+                    />
                   </div>
                   <div className="mb-3">
                     <div className="mb-2 w-100">
-                      <label className="text-muted" htmlFor="password">Contraseña</label>
+                      <label className="text-muted" htmlFor="password">
+                        Contraseña
+                      </label>
+                      <a href="forgot.html" className="float-end">
+                        Recuperar Contraseña?
+                      </a>
                     </div>
-                    <input id="password" type="password" className="form-control" name="password" required />
+                    <input
+                      id="password"
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      required
+                      onChange={onChangePassword}
+                    />
                   </div>
                   <div className="d-flex align-items-center">
                     <div className="form-check">
-                      <input type="checkbox" name="remember" id="remember" className="form-check-input" />
-                      <label htmlFor="remember" className="form-check-label">Recordarme</label>
+                      <input
+                        type="checkbox"
+                        name="remember"
+                        id="remember"
+                        className="form-check-input"
+                      />
+                      <label htmlFor="remember" className="form-check-label">
+                        Recordarme
+                      </label>
                     </div>
-                    <button type="submit" className="btn btn-primary ms-auto">Ingresar</button>
+                    <button type="submit" className="btn btn-primary ms-auto">
+                      Ingresar
+                    </button>
                   </div>
                 </form>
               </div>
