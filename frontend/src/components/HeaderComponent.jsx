@@ -1,7 +1,17 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom";
 import '../Style/HeaderComponent.css';
+import { useAuthStore } from "../store/useAuthStore"; 
 
 function HeaderComponent() {
+    const usuario = useAuthStore((state) => state.usuario);   
+    const logout = useAuthStore((state) => state.logout);    
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container">
@@ -22,18 +32,17 @@ function HeaderComponent() {
                         </li>
                     </ul>
                     <div>
-                        <p className="text-white bg-dark p-1">Bienvenido Chanchirata</p>
-                        <a href="">
-                            <div className="text-white bg-dark p-1">
+                        <p className="text-white bg-dark p-1">
+                            Bienvenido {usuario?.nombre || "Invitado"}
+                        </p>
+                        <button onClick={handleLogout} className="btn btn-dark p-1">
                             Salir
-                            </div>
-                        </a>
-                        
+                        </button>
                     </div>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
-  
-export default HeaderComponent
+
+export default HeaderComponent;
