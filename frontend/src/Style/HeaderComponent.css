@@ -1,0 +1,169 @@
+/* Navbar principal */
+.navbar {
+    background: rgba(30, 30, 30, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 107, 53, 0.3);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+.text-white {
+  color: white;
+}
+
+
+.navbar:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Brand/Logo */
+.navbar-brand {
+    color: #ff6b35 !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #ff8c66 !important;
+    transform: scale(1.05);
+}
+
+/* Botón toggle para móvil */
+.navbar-toggler {
+    border: 2px solid #ff6b35;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    border-color: #ff8c66;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 53, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Enlaces de navegación */
+.navbar-nav .nav-link {
+    color: #e0e0e0 !important;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem !important;
+    margin: 0 0.3rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff6b35 !important;
+    background: rgba(255, 107, 53, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.navbar-nav .nav-link:hover::before {
+    left: 100%;
+}
+
+/* Estado activo de los enlaces */
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    background: linear-gradient(45deg, #ff6b35, #8e44ad);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Sección de usuario */
+.navbar .user-section {
+    color: #e0e0e0;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+}
+
+.navbar .user-section:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 107, 53, 0.5);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.navbar .user-welcome {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #ff6b35;
+    font-weight: 600;
+}
+
+/* Enlace de salir */
+.navbar .logout-link {
+    color: #dc3545 !important;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.navbar .logout-link:hover {
+    color: #ffffff !important;
+    background: #dc3545;
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Efectos de resplandor */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 107, 53, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 107, 53, 0.5); }
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        background: rgba(20, 20, 20, 0.9);
+        border-radius: 10px;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .navbar .user-section {
+        margin-top: 1rem;
+        text-align: center;
+    }
+    
+    .navbar .logout-link {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.5rem !important;
+    }
+    
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 1rem !important;
+    }
+}
